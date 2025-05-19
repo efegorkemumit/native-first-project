@@ -1,38 +1,52 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { FlatList, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function App() {
-  return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.container}>
-      {Array.from({ length: 30 }).map((_, i) => (
-        <View key={i} style={styles.box}>
-          <Text style={styles.letter}> Öge {i + 1}</Text>
-        </View>
-      ))}
 
-    </ScrollView>
+const DATA = [
+  { id: '1', title: 'Elma' },
+  { id: '2', title: 'Armut' },
+  { id: '3', title: 'Muz' },
+  { id: '4', title: 'Çilek' },
+  { id: '5', title: 'Kivi' },
+];
+
+
+export default function App() {
+
+  const renderItem = ({item}: {item:{id:string; title:string}})=>(
+    <View style={styles.item}>
+      <Text style={styles.text}>{item.title}</Text>
+    </View>
+  )
+
+  return (
+    <View>
+        <FlatList
+          data={DATA}
+          keyExtractor={item=>item.id}
+          renderItem={renderItem}
+        
+        />
+
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    paddingVertical: 16,
-    marginTop:50
+  list :{
+    paddingVertical:16
   },
-  box: {
-    width: 100,
-    height: 100,
-    marginRight: 12,
-    backgroundColor: '#ffe0b2',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 12
+  item:{
+    backgroundColor: '#e3f2fd',
+    padding: 12,
+    marginVertical: 6,
+    marginHorizontal: 16,
+    borderRadius: 6,
 
   },
-  letter: {
-    fontSize: 24,
-    fontWeight: "800",
-    color: '#e65100',
+   text: {
+    fontSize: 16,
+    color: '#0d47a1',
+  },
 
-  }
 })
