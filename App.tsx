@@ -4,21 +4,16 @@ import { StyleSheet, Text, View } from 'react-native';
 export default function App() {
   return (
     <>
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-            <Text>Open up App.tsx to start working on your app!</Text>
+      <View style={styles.container}>
+        <Text style={{color:"#007AFF"}}>Open up App.tsx to start working on your app!</Text>
+        <Text style={styles.title}>Open up App.tsx to start working on your app!</Text>
 
-      <StatusBar style="auto" />
-    </View>
+        <StatusBar style="auto" />
+      </View>
 
-       <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-            <Text>Open up App.tsx to start working on your app!</Text>
 
-      <StatusBar style="auto" />
-    </View>
-</>
-    
+    </>
+
   );
 }
 
@@ -29,4 +24,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title:{
+    color:'#003AFF',
+    fontWeight:"900",
+    fontSize:36
+  }
 });
