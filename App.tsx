@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Button, Dimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function App() {
 
@@ -7,27 +7,26 @@ export default function App() {
   return (
     <>
       <View style={styles.container}>
-        <Text style={{ color: "#007AFF" }}>Open up App.tsx to start working on your app!</Text>
-        <Text style={styles.title}>Open up App.tsx to start working on your app!</Text>
-        <Text>Ekran Genişliği: {Math.round(width)} px</Text>
-        <Text>Ekran Yüksekliği: {Math.round(height)} px</Text>
 
-        <Text style={{ borderWidth: 2, width: width * 0.9, height: height * 0.2, fontSize: width > 400 ? 24 : 16 }}>Test</Text>
-
-
-        <StatusBar style="auto" />
-
-        <Button
-          title='Test'
-          color={"#ff6600"}
+        <Image
+          source={require('./assets/bg.jpg')}
+          style={styles.image}
         />
 
-        <TouchableOpacity
-          style={{backgroundColor:"#ff6600", paddingVertical:12, paddingHorizontal:24, borderRadius:22}}
-        >
-          <Text style={{color:"#fff"}}>Test</Text>
+        <Image
+          source={{ uri: 'https://efegorkemumit.com/_next/image?url=%2Fimages%2Fporftolio2025.png&w=1080&q=75' }}
+          style={styles.image}
+        />
 
-        </TouchableOpacity>
+        <ImageBackground
+          source={require('./assets/bg.jpg')}
+          style={styles.bg}
+
+        >
+            <Text style={styles.text}>Text 123</Text>
+
+        </ImageBackground>
+
 
       </View>
 
@@ -48,5 +47,24 @@ const styles = StyleSheet.create({
     color: '#003AFF',
     fontWeight: "900",
     fontSize: 36
+  },
+  image: {
+    width: 400,
+    height: 200,
+    borderRadius: 20
+  },
+  text:{
+    color:"#fff",
+    fontSize:20,
+    fontWeight:"700",
+    paddingHorizontal:8,
+    paddingVertical:4
+
+  },
+  bg:{
+    width:'100%',
+    height:200,
+    justifyContent:'center',
+    alignItems:'center'
   }
 });
