@@ -20,7 +20,7 @@ export default function App() {
 
         <ImageBackground
           source={require('./assets/bg.jpg')}
-          style={styles.bg}
+          style={[styles.bg, {width:width, height:height * 0.2}]}
 
         >
             <Text style={styles.text}>Text 123</Text>
@@ -62,8 +62,7 @@ const styles = StyleSheet.create({
 
   },
   bg:{
-    width:'100%',
-    height:200,
+  
     justifyContent:'center',
     alignItems:'center'
   }
