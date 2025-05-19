@@ -1,31 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, Dimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Button, Dimensions, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default function App() {
 
   const { height, width } = Dimensions.get("window")
+
+  const  showAlert =()=>{
+    Alert.alert(
+      "Bilgi",
+      "Bu Bir Bilgi",
+      [
+        {text:'iptal'},
+        {text:'Devam Et', onPress:()=>console.log('Devam Et Tıklandı')}
+      ]
+    )
+  }
+
   return (
     <>
       <View style={styles.container}>
 
-        <Image
-          source={require('./assets/bg.jpg')}
-          style={styles.image}
-        />
-
-        <Image
-          source={{ uri: 'https://efegorkemumit.com/_next/image?url=%2Fimages%2Fporftolio2025.png&w=1080&q=75' }}
-          style={styles.image}
-        />
-
-        <ImageBackground
-          source={require('./assets/bg.jpg')}
-          style={[styles.bg, {width:width, height:height * 0.2}]}
-
-        >
-            <Text style={styles.text}>Text 123</Text>
-
-        </ImageBackground>
+       <Button title='Uyarı Göster' onPress={showAlert}/>
 
 
       </View>
