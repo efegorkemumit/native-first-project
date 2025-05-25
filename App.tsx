@@ -1,52 +1,48 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-
-
-const DATA = [
-  { id: '1', title: 'Elma' },
-  { id: '2', title: 'Armut' },
-  { id: '3', title: 'Muz' },
-  { id: '4', title: 'Çilek' },
-  { id: '5', title: 'Kivi' },
-];
-
+import { Button, StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
 
 export default function App() {
 
-  const renderItem = ({item}: {item:{id:string; title:string}})=>(
-    <View style={styles.item}>
-      <Text style={styles.text}>{item.title}</Text>
-    </View>
-  )
+  const [count, setCount] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(()=>{
+
+    const intervalId= setInterval(()=>{
+      setSeconds(prev=> prev +1)
+    }, 1000);
+
+    return()=>clearInterval(intervalId)
+
+  },[])
+
 
   return (
-    <View>
-        <FlatList
-          data={DATA}
-          keyExtractor={item=>item.id}
-          renderItem={renderItem}
-        
-        />
+    <View style={styles.container}>
+      <Button
+        title='Azalt'
+        onPress={()=>setCount(prev=>prev -1)}
+      />
+      <Text>
+      Sayaç: {count}
 
+      </Text>
+      <Button
+        title='Artır'
+        onPress={()=>setCount(prev=>prev +1)}
+      />
+
+      <Text>
+        {seconds}
+      </Text>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  list :{
-    paddingVertical:16
-  },
-  item:{
-    backgroundColor: '#e3f2fd',
-    padding: 12,
-    marginVertical: 6,
-    marginHorizontal: 16,
-    borderRadius: 6,
-
-  },
-   text: {
-    fontSize: 16,
-    color: '#0d47a1',
-  },
-
+  container:{
+    flex:1,
+    justifyContent:"center",
+    alignItems:"center"
+  }
 })
