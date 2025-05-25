@@ -1,48 +1,49 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { Button, Modal, StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
 
 export default function App() {
 
-  const [count, setCount] = useState(0);
-  const [seconds, setSeconds] = useState(0);
-
-  useEffect(()=>{
-
-    const intervalId= setInterval(()=>{
-      setSeconds(prev=> prev +1)
-    }, 1000);
-
-    return()=>clearInterval(intervalId)
-
-  },[])
-
-
+  const [visible, setVisible] = useState(false);
   return (
     <View style={styles.container}>
       <Button
-        title='Azalt'
-        onPress={()=>setCount(prev=>prev -1)}
+        title='Modal Aç'
+        onPress={() => setVisible(true)}
       />
-      <Text>
-      Sayaç: {count}
+      <Modal
+        transparent
+        animationType='slide'
+        visible={visible}
+        onRequestClose={() => setVisible(false)}
 
-      </Text>
-      <Button
-        title='Artır'
-        onPress={()=>setCount(prev=>prev +1)}
-      />
+      >
+        <View style={styles.backdrop}>
 
-      <Text>
-        {seconds}
-      </Text>
+          <Text> Merhaba!</Text>
+          <Button
+            title='Modal Kapat'
+            onPress={() => setVisible(false)}
+          />
+
+
+        </View>
+
+      </Modal>
+
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    justifyContent:"center",
-    alignItems:"center"
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  backdrop: {
+    flex: 1,
+    backgroundColor: "#fefefe",
+    justifyContent: "center",
+    alignItems: "center"
   }
 })
