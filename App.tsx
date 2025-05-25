@@ -1,34 +1,25 @@
-import { Button, Modal, StyleSheet, Text, View } from 'react-native'
-import React, { useState } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
+import StaticBanner from './components/StaticBanner'
+import UserBadge from './components/UserBadge'
 
 export default function App() {
 
-  const [visible, setVisible] = useState(false);
+  const users = [
+    { name: "Efe Görkem", avatar: "efegorkemumit.com" },
+    { name: "Ayşe Ayşe", avatar: "ayseayse.com" },
+
+  ]
   return (
     <View style={styles.container}>
-      <Button
-        title='Modal Aç'
-        onPress={() => setVisible(true)}
-      />
-      <Modal
-        transparent
-        animationType='slide'
-        visible={visible}
-        onRequestClose={() => setVisible(false)}
-
-      >
-        <View style={styles.backdrop}>
-
-          <Text> Merhaba!</Text>
-          <Button
-            title='Modal Kapat'
-            onPress={() => setVisible(false)}
-          />
-
-
+      {users.map(( u, index) => (
+        <View  key={index}>
+        <UserBadge
+          name={u.name}
+          avatar={u.avatar}
+        />
         </View>
-
-      </Modal>
+      ))}
 
     </View>
   )
@@ -40,10 +31,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  backdrop: {
-    flex: 1,
-    backgroundColor: "#fefefe",
-    justifyContent: "center",
-    alignItems: "center"
-  }
 })
